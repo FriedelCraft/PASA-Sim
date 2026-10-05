@@ -1,0 +1,3 @@
+# Install the package and supported dependencies from pyproject.toml.
+# Historical exact version pins are retained in requirements-original.txt.
+-e .

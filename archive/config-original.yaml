@@ -1,0 +1,83 @@
+# PASA-Sim configuration
+#
+# Every tunable parameter in the framework lives here -- see config.py for
+# validation rules and defaults for any key you omit. Switch between a
+# perfect clear-sky run and a MODIS-MAIAC pollution-aware run with exactly
+# one field: run.simulation_mode.
+#
+# Usage:
+#   pasa simulate --config config.yaml
+#   pasa analyze outputs/civil_lines_clear.npz outputs/civil_lines_pollution.npz \
+#       --glb-path data/civil_lines_city_model.glb --output-dir report/
+
+run:
+  simulation_mode: pollution        # "clear" | "pollution"
+  run_name: civil_lines_2024_clear
+  output_dir: outputs/civil_lines_2024
+  checkpoint_dir: checkpoints/civil_lines_2024
+  checkpoint_interval_hours: 500    # how often progress is saved to disk during a long run
+  resume: false                      # pick up an interrupted run automatically if a matching checkpoint exists
+  force_restart: true              # true = ignore/clear any existing checkpoint and start over
+  random_seed: 42
+  log_level: INFO                   # DEBUG | INFO | WARNING | ERROR
+  log_file: null                    # null = console only; or e.g. "logs/civil_lines_2024.log"
+
+city_model:
+  glb_path: ./output/city.glb
+  roof_tilt_threshold_deg: 45.0     # faces with tilt <= this are "roof"
+  wall_tilt_max_deg: 135.0          # faces with tilt in (roof_threshold, this] are "wall"; beyond this = excluded (undersides)
+  ray_offset_scale: 1.0e-6          # ray-origin nudge, as a fraction of the mesh's bounding-box diagonal
+  min_face_area_m2: 0.01            # degenerate slivers below this area are excluded
+
+location:
+  latitude: 28.6752                 # Civil Lines, Delhi NCR -- confirm/replace with your AOI's exact reference point
+  longitude: 77.2210
+  altitude_m: 216.0
+  timezone: Asia/Kolkata
+
+time:
+  year: 2025
+  start: null
+  end: null
+  freq: 1h
+
+solar:
+  linke_turbidity_source: climatology   # "climatology" (pvlib's bundled Linke turbidity dataset) | "fixed"
+  fixed_linke_turbidity: 3.0            # only used if linke_turbidity_source == "fixed"
+  airmass_model: kastenyoung1989        # relative air-mass formula, used for BOTH the clear-sky baseline and the AOD Beer-Lambert term
+
+pollution:
+  attenuation_model: aod_beer_lambert
+  aod:
+    format: geotiff
+    path: mcd19a2_Optical_Depth_055_2025.tif
+    spatially_varying: true
+    interpolation_method: linear
+    max_gap_hours: 72.0
+    climatological_fallback_value: 0.35
+    source_timezone: UTC            # timezone assumed for naive (no offset) timestamps in the AOD source file
+
+performance:
+  n_workers: 10                         # 1 = sequential; >1 = multiprocess across hour-chunks
+  hour_chunk_size: 100                  # hours processed per vectorized batch / per parallel task
+  precision: float32                    # float32 | float16 for the (large) hourly irradiance array
+  use_embree_if_available: true         # falls back to a pure-NumPy ray/triangle intersector if embreex isn't installed
+
+output:
+  save_hourly_irradiance: true    # the big (n_faces x n_hours) array -- disable to save memory/disk on very large runs
+  save_hourly_shadow_mask: true   # same size as above; disable independently if you only need the irradiance values
+  # Solar geometry, DNI, and (in pollution mode) the AOD group series are always saved --
+  # they're tiny (n_hours or n_groups x n_hours) regardless of city size. The NPZ is
+  # always written with np.savez_compressed.
+
+analysis:
+  top_n_buildings: 20
+  percentiles: [5, 25, 50, 75, 95]
+
+plotting:
+  dpi: 300
+  colormap_irradiance: inferno
+  colormap_loss: viridis_r
+  # Figures are always PNG (static, 300 DPI by default above) + self-contained HTML/Plotly
+  # (interactive city mesh) -- see plotting.py's module docstring for why Plotly was used
+  # instead of PyVista here.

@@ -1,0 +1,30 @@
+# Daily band ordering and scale reproduce the source code's assumptions.
+# The available raster has no acquisition timestamp tags; see docs.
+run:
+  simulation_mode: pollution
+  run_name: civil_lines_2025_pollution
+  output_dir: ../outputs/civil_lines
+  checkpoint_dir: ../checkpoints/civil_lines_pollution
+  resume: false
+  force_restart: false
+city_model:
+  glb_path: ../data/civil_lines/city.glb
+time:
+  year: 2025
+pollution:
+  attenuation_model: aod_beer_lambert
+  aod:
+    format: geotiff
+    path: ../data/civil_lines/mcd19a2_Optical_Depth_055_2025.tif
+    spatially_varying: true
+    scale_factor: 0.001
+    start_date: '2025-01-01'
+    source_timezone: UTC
+    max_gap_hours: 72.0
+    climatological_fallback_value: 0.35
+performance:
+  n_workers: 1
+  hour_chunk_size: 100
+output:
+  save_hourly_irradiance: false
+  save_hourly_shadow_mask: false

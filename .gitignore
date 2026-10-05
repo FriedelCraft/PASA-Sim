@@ -1,0 +1,28 @@
+# Python environments and build products
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+.coverage
+htmlcov/
+
+# New simulation runs, reports, downloads, and logs
+outputs/
+checkpoints/
+logs/
+cache/
+*.log
+!data/earlier_pipeline/pipeline.log
+
+# Local editor / OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+~$*
+.env
+.env.*

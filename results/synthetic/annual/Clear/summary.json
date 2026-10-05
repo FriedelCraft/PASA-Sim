@@ -1,0 +1,353 @@
+{
+  "runs": [
+    {
+      "source": "civil_lines_2024",
+      "simulation_mode": "clear",
+      "total_energy_kwh": 6723474.0,
+      "overall_stats": {
+        "count": 120,
+        "sum": 72724605.08007812,
+        "mean": 606038.3756673177,
+        "std": 571046.940614258,
+        "min": 32262.923828125,
+        "max": 1761129.5,
+        "median": 467300.5625,
+        "percentiles": {
+          "p5": 35441.48984375,
+          "p25": 113160.3515625,
+          "p50": 467300.5625,
+          "p75": 952956.40625,
+          "p95": 1745814.38125
+        }
+      },
+      "roof_stats": {
+        "count": 24,
+        "sum": 37976072.125,
+        "mean": 1582336.3385416667,
+        "std": 205661.24023465408,
+        "min": 1028928.75,
+        "max": 1761129.5,
+        "median": 1695285.625,
+        "percentiles": {
+          "p5": 1236190.8875,
+          "p25": 1437443.8125,
+          "p50": 1695285.625,
+          "p75": 1746698.90625,
+          "p95": 1761129.5
+        }
+      },
+      "wall_stats": {
+        "count": 96,
+        "sum": 34748532.955078125,
+        "mean": 361963.88494873047,
+        "std": 314932.2767671286,
+        "min": 32262.923828125,
+        "max": 953709.1875,
+        "median": 233304.40625,
+        "percentiles": {
+          "p5": 35370.0185546875,
+          "p25": 56142.4189453125,
+          "p50": 233304.40625,
+          "p75": 717114.3125,
+          "p95": 953575.15625
+        }
+      },
+      "orientation": {
+        "roof_tilt_deg": {
+          "count": 24,
+          "sum": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "median": 0.0,
+          "percentiles": {
+            "p5": 0.0,
+            "p25": 0.0,
+            "p50": 0.0,
+            "p75": 0.0,
+            "p95": 0.0
+          }
+        },
+        "roof_azimuth_deg": null,
+        "wall_tilt_deg": {
+          "count": 96,
+          "sum": 8640.0,
+          "mean": 90.0,
+          "std": 0.0,
+          "min": 90.0,
+          "max": 90.0,
+          "median": 90.0,
+          "percentiles": {
+            "p5": 90.0,
+            "p25": 90.0,
+            "p50": 90.0,
+            "p75": 90.0,
+            "p95": 90.0
+          }
+        },
+        "wall_azimuth_deg": {
+          "count": 96,
+          "sum": 12960.0,
+          "mean": 135.0,
+          "std": 100.62305898749054,
+          "min": 0.0,
+          "max": 270.0,
+          "median": 135.0,
+          "percentiles": {
+            "p5": 0.0,
+            "p25": 67.5,
+            "p50": 135.0,
+            "p75": 202.5,
+            "p95": 270.0
+          }
+        }
+      },
+      "n_buildings": 12,
+      "top_buildings": [
+        {
+          "building_id": "building_03",
+          "n_faces": 10,
+          "total_area_m2": 1742.7900390625,
+          "total_annual_energy_wh": 1077373184.0,
+          "mean_annual_irradiance_wh_m2": 747012.25,
+          "roof_area_m2": 171.46104431152344,
+          "wall_area_m2": 1571.3289794921875,
+          "specific_yield_wh_m2": 618188.7432519135
+        },
+        {
+          "building_id": "building_00",
+          "n_faces": 10,
+          "total_area_m2": 1247.406982421875,
+          "total_annual_energy_wh": 752827392.0,
+          "mean_annual_irradiance_wh_m2": 694293.0,
+          "roof_area_m2": 153.94815063476562,
+          "wall_area_m2": 1093.4588623046875,
+          "specific_yield_wh_m2": 603513.851219884
+        },
+        {
+          "building_id": "building_09",
+          "n_faces": 10,
+          "total_area_m2": 993.5262451171875,
+          "total_annual_energy_wh": 714149120.0,
+          "mean_annual_irradiance_wh_m2": 758669.5,
+          "roof_area_m2": 166.73638916015625,
+          "wall_area_m2": 826.7898559570312,
+          "specific_yield_wh_m2": 718802.4710064557
+        },
+        {
+          "building_id": "building_07",
+          "n_faces": 10,
+          "total_area_m2": 1262.56884765625,
+          "total_annual_energy_wh": 668958208.0,
+          "mean_annual_irradiance_wh_m2": 664547.6875,
+          "roof_area_m2": 128.43829345703125,
+          "wall_area_m2": 1134.130615234375,
+          "specific_yield_wh_m2": 529838.9939224385
+        },
+        {
+          "building_id": "building_10",
+          "n_faces": 10,
+          "total_area_m2": 1126.8228759765625,
+          "total_annual_energy_wh": 637986688.0,
+          "mean_annual_irradiance_wh_m2": 659092.1875,
+          "roof_area_m2": 148.8047332763672,
+          "wall_area_m2": 978.0181884765625,
+          "specific_yield_wh_m2": 566181.8743669789
+        },
+        {
+          "building_id": "building_05",
+          "n_faces": 10,
+          "total_area_m2": 1064.2498779296875,
+          "total_annual_energy_wh": 628875264.0,
+          "mean_annual_irradiance_wh_m2": 659895.6875,
+          "roof_area_m2": 157.4008026123047,
+          "wall_area_m2": 906.84912109375,
+          "specific_yield_wh_m2": 590909.4067488804
+        },
+        {
+          "building_id": "building_02",
+          "n_faces": 10,
+          "total_area_m2": 872.6380615234375,
+          "total_annual_energy_wh": 567559680.0,
+          "mean_annual_irradiance_wh_m2": 690581.9375,
+          "roof_area_m2": 144.2620849609375,
+          "wall_area_m2": 728.3759765625,
+          "specific_yield_wh_m2": 650395.2841676003
+        },
+        {
+          "building_id": "building_06",
+          "n_faces": 10,
+          "total_area_m2": 787.9371337890625,
+          "total_annual_energy_wh": 447661024.0,
+          "mean_annual_irradiance_wh_m2": 557732.3125,
+          "roof_area_m2": 167.14102172851562,
+          "wall_area_m2": 620.796142578125,
+          "specific_yield_wh_m2": 568143.0723378531
+        },
+        {
+          "building_id": "building_01",
+          "n_faces": 10,
+          "total_area_m2": 643.848388671875,
+          "total_annual_energy_wh": 380743168.0,
+          "mean_annual_irradiance_wh_m2": 523674.25,
+          "roof_area_m2": 171.81878662109375,
+          "wall_area_m2": 472.0295715332031,
+          "specific_yield_wh_m2": 591355.3170264101
+        },
+        {
+          "building_id": "building_11",
+          "n_faces": 10,
+          "total_area_m2": 572.7978515625,
+          "total_annual_energy_wh": 380072896.0,
+          "mean_annual_irradiance_wh_m2": 514586.90625,
+          "roof_area_m2": 188.42398071289062,
+          "wall_area_m2": 384.3738708496094,
+          "specific_yield_wh_m2": 663537.5725715845
+        },
+        {
+          "building_id": "building_08",
+          "n_faces": 10,
+          "total_area_m2": 574.7745361328125,
+          "total_annual_energy_wh": 273381664.0,
+          "mean_annual_irradiance_wh_m2": 458780.5,
+          "roof_area_m2": 125.30235290527344,
+          "wall_area_m2": 449.47216796875,
+          "specific_yield_wh_m2": 475632.8730903103
+        },
+        {
+          "building_id": "building_04",
+          "n_faces": 10,
+          "total_area_m2": 481.0871887207031,
+          "total_annual_energy_wh": 193885152.0,
+          "mean_annual_irradiance_wh_m2": 343594.28125,
+          "roof_area_m2": 124.06320190429688,
+          "wall_area_m2": 357.02398681640625,
+          "specific_yield_wh_m2": 403014.5814432833
+        }
+      ],
+      "bottom_buildings": [
+        {
+          "building_id": "building_04",
+          "n_faces": 10,
+          "total_area_m2": 481.0871887207031,
+          "total_annual_energy_wh": 193885152.0,
+          "mean_annual_irradiance_wh_m2": 343594.28125,
+          "roof_area_m2": 124.06320190429688,
+          "wall_area_m2": 357.02398681640625,
+          "specific_yield_wh_m2": 403014.5814432833
+        },
+        {
+          "building_id": "building_08",
+          "n_faces": 10,
+          "total_area_m2": 574.7745361328125,
+          "total_annual_energy_wh": 273381664.0,
+          "mean_annual_irradiance_wh_m2": 458780.5,
+          "roof_area_m2": 125.30235290527344,
+          "wall_area_m2": 449.47216796875,
+          "specific_yield_wh_m2": 475632.8730903103
+        },
+        {
+          "building_id": "building_11",
+          "n_faces": 10,
+          "total_area_m2": 572.7978515625,
+          "total_annual_energy_wh": 380072896.0,
+          "mean_annual_irradiance_wh_m2": 514586.90625,
+          "roof_area_m2": 188.42398071289062,
+          "wall_area_m2": 384.3738708496094,
+          "specific_yield_wh_m2": 663537.5725715845
+        },
+        {
+          "building_id": "building_01",
+          "n_faces": 10,
+          "total_area_m2": 643.848388671875,
+          "total_annual_energy_wh": 380743168.0,
+          "mean_annual_irradiance_wh_m2": 523674.25,
+          "roof_area_m2": 171.81878662109375,
+          "wall_area_m2": 472.0295715332031,
+          "specific_yield_wh_m2": 591355.3170264101
+        },
+        {
+          "building_id": "building_06",
+          "n_faces": 10,
+          "total_area_m2": 787.9371337890625,
+          "total_annual_energy_wh": 447661024.0,
+          "mean_annual_irradiance_wh_m2": 557732.3125,
+          "roof_area_m2": 167.14102172851562,
+          "wall_area_m2": 620.796142578125,
+          "specific_yield_wh_m2": 568143.0723378531
+        },
+        {
+          "building_id": "building_02",
+          "n_faces": 10,
+          "total_area_m2": 872.6380615234375,
+          "total_annual_energy_wh": 567559680.0,
+          "mean_annual_irradiance_wh_m2": 690581.9375,
+          "roof_area_m2": 144.2620849609375,
+          "wall_area_m2": 728.3759765625,
+          "specific_yield_wh_m2": 650395.2841676003
+        },
+        {
+          "building_id": "building_05",
+          "n_faces": 10,
+          "total_area_m2": 1064.2498779296875,
+          "total_annual_energy_wh": 628875264.0,
+          "mean_annual_irradiance_wh_m2": 659895.6875,
+          "roof_area_m2": 157.4008026123047,
+          "wall_area_m2": 906.84912109375,
+          "specific_yield_wh_m2": 590909.4067488804
+        },
+        {
+          "building_id": "building_10",
+          "n_faces": 10,
+          "total_area_m2": 1126.8228759765625,
+          "total_annual_energy_wh": 637986688.0,
+          "mean_annual_irradiance_wh_m2": 659092.1875,
+          "roof_area_m2": 148.8047332763672,
+          "wall_area_m2": 978.0181884765625,
+          "specific_yield_wh_m2": 566181.8743669789
+        },
+        {
+          "building_id": "building_07",
+          "n_faces": 10,
+          "total_area_m2": 1262.56884765625,
+          "total_annual_energy_wh": 668958208.0,
+          "mean_annual_irradiance_wh_m2": 664547.6875,
+          "roof_area_m2": 128.43829345703125,
+          "wall_area_m2": 1134.130615234375,
+          "specific_yield_wh_m2": 529838.9939224385
+        },
+        {
+          "building_id": "building_09",
+          "n_faces": 10,
+          "total_area_m2": 993.5262451171875,
+          "total_annual_energy_wh": 714149120.0,
+          "mean_annual_irradiance_wh_m2": 758669.5,
+          "roof_area_m2": 166.73638916015625,
+          "wall_area_m2": 826.7898559570312,
+          "specific_yield_wh_m2": 718802.4710064557
+        },
+        {
+          "building_id": "building_00",
+          "n_faces": 10,
+          "total_area_m2": 1247.406982421875,
+          "total_annual_energy_wh": 752827392.0,
+          "mean_annual_irradiance_wh_m2": 694293.0,
+          "roof_area_m2": 153.94815063476562,
+          "wall_area_m2": 1093.4588623046875,
+          "specific_yield_wh_m2": 603513.851219884
+        },
+        {
+          "building_id": "building_03",
+          "n_faces": 10,
+          "total_area_m2": 1742.7900390625,
+          "total_annual_energy_wh": 1077373184.0,
+          "mean_annual_irradiance_wh_m2": 747012.25,
+          "roof_area_m2": 171.46104431152344,
+          "wall_area_m2": 1571.3289794921875,
+          "specific_yield_wh_m2": 618188.7432519135
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+Figure 1: Distribution of simulated annual face irradiance under clear-sky and pollution-attenuated conditions across the Civil Lines study area.
+
+Figure 2: Monthly integrated irradiance comparison between clear-sky and pollution-attenuated scenarios, overlaying the percentage energy loss. The seasonal variance tracks local pollution cycles.
+
+Figure 3: Relationship between clear-sky and pollution-attenuated annual integrated irradiance. Each point represents one mesh face. The deviation from the 1:1 reference line highlights the geometric dependency of atmospheric attenuation.
+
+Figure 4: Total annual energy deficit across the Civil Lines Study Area due to atmospheric pollution.
+
+Figure 5: Monthly mean Aerosol Optical Depth (AOD) and the corresponding atmospheric transmission coefficient, illustrating the physical driver behind the observed seasonal energy losses.

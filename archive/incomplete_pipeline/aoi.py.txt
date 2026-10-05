@@ -1,0 +1,236 @@
+"""
+aoi.py
+======
+Loading, validating, repairing, and reprojecting the AOI boundary -- the
+one mandatory input that tells this pipeline where to work.
+
+This is deliberately its own module rather than a helper tucked inside
+geometry.py: the AOI is not just another piece of geometry, it's the thing
+every other spatial filter in the pipeline (footprint clip, DSM clip,
+tiling extent) is driven off of, and it gets its own explicit
+load -> validate -> repair -> reproject -> union sequence with its own
+pre-flight checks, matching a first-class pipeline stage rather than an
+afterthought.
+
+Nothing here -- or anywhere downstream -- knows or cares what the boundary
+represents. `load_aoi()` returns a plain Shapely geometry; whether the
+source file was a Civil Lines ward boundary, a different Delhi
+neighborhood, or a district boundary in another city entirely makes no
+difference to a single line of code past this function's return.
+"""
+
+from __future__ import annotations
+
+import logging
+
+import geopandas as gpd
+import shapely
+from shapely.geometry import box
+from shapely.geometry.base import BaseGeometry
+
+from exceptions import AOIValidationError, DataLoadError
+from utils import ensure_crs
+
+logger = logging.getLogger(__name__)
+
+
+def load_aoi(path: str, working_crs: str) -> BaseGeometry:
+    """
+    Load an AOI boundary from any GDAL/OGR-readable vector format (.shp,
+    .gpkg, .geojson, ...; geopandas.read_file dispatches on extension/driver
+    automatically, so no format-specific code is needed here), then:
+
+      1. explode multipart features to singlepart (so a validity check
+         applies per-ring, not per-feature),
+      2. drop and warn about any non-polygonal features (points/lines that
+         accidentally ended up in the same layer),
+      3. repair invalid polygons via make_valid rather than rejecting them,
+      4. reproject to the pipeline's working CRS,
+      5. union everything into ONE Polygon/MultiPolygon -- so a multi-ring
+         or multi-feature AOI (e.g. a ward boundary delivered as several
+         adjacent parcels) becomes a single clip mask.
+    """
+    try:
+        gdf = gpd.read_file(path)
+    except Exception as e:
+        raise DataLoadError(f"Could not read AOI boundary '{path}': {e}") from e
+
+    if gdf.empty:
+        raise AOIValidationError(f"AOI boundary '{path}' contains zero features")
+
+    gdf = gdf.explode(index_parts=False).reset_index(drop=True)
+
+    is_polygonal = gdf.geometry.geom_type.isin(["Polygon", "MultiPolygon"])
+    n_dropped = int((~is_polygonal).sum())
+    if n_dropped:
+        logger.warning(
+            f"AOI boundary '{path}': dropped {n_dropped} non-polygon feature(s) "
+            f"({sorted(gdf.loc[~is_polygonal, 'geometry'].geom_type.unique())})"
+        )
+    gdf = gdf[is_polygonal].reset_index(drop=True)
+    if gdf.empty:
+        raise AOIValidationError(f"AOI boundary '{path}' contains no usable polygon geometry")
+
+    geoms = gdf.geometry.values
+    invalid_mask = ~shapely.is_valid(geoms)
+    n_invalid = int(invalid_mask.sum())
+    if n_invalid:
+        repaired = geoms.copy()
+        repaired[invalid_mask] = shapely.make_valid(geoms[invalid_mask])
+        gdf = gdf.copy()
+        gdf["geometry"] = repaired
+        logger.info(f"AOI boundary: repaired {n_invalid} invalid geometr{'y' if n_invalid == 1 else 'ies'}")
+
+    gdf = ensure_crs(gdf, working_crs, name="AOI boundary")
+
+    union = gdf.union_all() if hasattr(gdf, "union_all") else gdf.unary_union
+    if union.is_empty:
+        raise AOIValidationError(f"AOI boundary '{path}' produced an empty geometry after repair/union")
+    if union.geom_type not in ("Polygon", "MultiPolygon"):
+        raise AOIValidationError(
+            f"AOI boundary '{path}' unioned into a {union.geom_type}, expected Polygon/MultiPolygon"
+        )
+
+    logger.info(
+        f"AOI loaded from '{path}': {len(gdf)} polygon part(s) -> one "
+        f"{union.geom_type} covering {union.area / 1e6:.4f} km^2, bounds={tuple(round(b, 1) for b in union.bounds)}"
+    )
+    return union
+
+
+def validate_intersects(aoi_geom: BaseGeometry, other_bounds: tuple[float, float, float, float],
+                         other_label: str) -> None:
+    """
+    Cheap bounding-box pre-flight check ("does the AOI even overlap this
+    dataset at all?"), run BEFORE the corresponding expensive clip/read, so
+    a CRS mismatch or a wrong file produces one clear sentence instead of
+    silently returning zero features several stages later.
+    """
+    if not aoi_geom.intersects(box(*other_bounds)):
+        raise AOIValidationError(
+            f"AOI does not intersect {other_label}. "
+            f"AOI bounds (working CRS): {tuple(round(b, 1) for b in aoi_geom.bounds)}; "
+            f"{other_label} bounds (working CRS): {tuple(round(b, 1) for b in other_bounds)}. "
+            f"Double-check both inputs are actually in/near the same place and that any "
+            f"CRS without an explicit EPSG code was interpreted correctly."
+        )
+
+"""
+aoi.py
+======
+Loading, validating, repairing, and reprojecting the AOI boundary -- the
+one mandatory input that tells this pipeline where to work.
+
+This is deliberately its own module rather than a helper tucked inside
+geometry.py: the AOI is not just another piece of geometry, it's the thing
+every other spatial filter in the pipeline (footprint clip, DSM clip,
+tiling extent) is driven off of, and it gets its own explicit
+load -> validate -> repair -> reproject -> union sequence with its own
+pre-flight checks, matching a first-class pipeline stage rather than an
+afterthought.
+
+Nothing here -- or anywhere downstream -- knows or cares what the boundary
+represents. `load_aoi()` returns a plain Shapely geometry; whether the
+source file was a Civil Lines ward boundary, a different Delhi
+neighborhood, or a district boundary in another city entirely makes no
+difference to a single line of code past this function's return.
+"""
+
+from __future__ import annotations
+
+import logging
+
+import geopandas as gpd
+import shapely
+from shapely.geometry import box
+from shapely.geometry.base import BaseGeometry
+
+from exceptions import AOIValidationError, DataLoadError
+from utils import ensure_crs
+
+logger = logging.getLogger(__name__)
+
+
+def load_aoi(path: str, working_crs: str) -> BaseGeometry:
+    """
+    Load an AOI boundary from any GDAL/OGR-readable vector format (.shp,
+    .gpkg, .geojson, ...; geopandas.read_file dispatches on extension/driver
+    automatically, so no format-specific code is needed here), then:
+
+      1. explode multipart features to singlepart (so a validity check
+         applies per-ring, not per-feature),
+      2. drop and warn about any non-polygonal features (points/lines that
+         accidentally ended up in the same layer),
+      3. repair invalid polygons via make_valid rather than rejecting them,
+      4. reproject to the pipeline's working CRS,
+      5. union everything into ONE Polygon/MultiPolygon -- so a multi-ring
+         or multi-feature AOI (e.g. a ward boundary delivered as several
+         adjacent parcels) becomes a single clip mask.
+    """
+    try:
+        gdf = gpd.read_file(path)
+    except Exception as e:
+        raise DataLoadError(f"Could not read AOI boundary '{path}': {e}") from e
+
+    if gdf.empty:
+        raise AOIValidationError(f"AOI boundary '{path}' contains zero features")
+
+    gdf = gdf.explode(index_parts=False).reset_index(drop=True)
+
+    is_polygonal = gdf.geometry.geom_type.isin(["Polygon", "MultiPolygon"])
+    n_dropped = int((~is_polygonal).sum())
+    if n_dropped:
+        logger.warning(
+            f"AOI boundary '{path}': dropped {n_dropped} non-polygon feature(s) "
+            f"({sorted(gdf.loc[~is_polygonal, 'geometry'].geom_type.unique())})"
+        )
+    gdf = gdf[is_polygonal].reset_index(drop=True)
+    if gdf.empty:
+        raise AOIValidationError(f"AOI boundary '{path}' contains no usable polygon geometry")
+
+    geoms = gdf.geometry.values
+    invalid_mask = ~shapely.is_valid(geoms)
+    n_invalid = int(invalid_mask.sum())
+    if n_invalid:
+        repaired = geoms.copy()
+        repaired[invalid_mask] = shapely.make_valid(geoms[invalid_mask])
+        gdf = gdf.copy()
+        gdf["geometry"] = repaired
+        logger.info(f"AOI boundary: repaired {n_invalid} invalid geometr{'y' if n_invalid == 1 else 'ies'}")
+
+    gdf = ensure_crs(gdf, working_crs, name="AOI boundary")
+
+    union = gdf.union_all() if hasattr(gdf, "union_all") else gdf.unary_union
+    if union.is_empty:
+        raise AOIValidationError(f"AOI boundary '{path}' produced an empty geometry after repair/union")
+    if union.geom_type not in ("Polygon", "MultiPolygon"):
+        raise AOIValidationError(
+            f"AOI boundary '{path}' unioned into a {union.geom_type}, expected Polygon/MultiPolygon"
+        )
+
+    logger.info(
+        f"AOI loaded from '{path}': {len(gdf)} polygon part(s) -> one "
+        f"{union.geom_type} covering {union.area / 1e6:.4f} km^2, bounds={tuple(round(b, 1) for b in union.bounds)}"
+    )
+    return union
+
+
+def validate_intersects(aoi_geom: BaseGeometry, other_bounds: tuple[float, float, float, float],
+                         other_label: str) -> None:
+    """
+    Cheap bounding-box pre-flight check ("does the AOI even overlap this
+    dataset at all?"), run BEFORE the corresponding expensive clip/read, so
+    a CRS mismatch or a wrong file produces one clear sentence instead of
+    silently returning zero features several stages later.
+    """
+    if not aoi_geom.intersects(box(*other_bounds)):
+        raise AOIValidationError(
+            f"AOI does not intersect {other_label}. "
+            f"AOI bounds (working CRS): {tuple(round(b, 1) for b in aoi_geom.bounds)}; "
+            f"{other_label} bounds (working CRS): {tuple(round(b, 1) for b in other_bounds)}. "
+            f"Double-check both inputs are actually in/near the same place and that any "
+            f"CRS without an explicit EPSG code was interpreted correctly."
+        )
+
+
+

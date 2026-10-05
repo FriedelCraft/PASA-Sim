@@ -1,0 +1,48 @@
+{
+  "centroid_ecef_m": [
+    1238611.8666088318,
+    5461331.983403009,
+    3042694.9479833897
+  ],
+  "enu_applied": true,
+  "note": "Recentered (world = local + centroid_ecef_m) AND rotated into local East-North-Up (Z=up) at the centroid's geodetic position -- see centroid_latitude_deg/centroid_longitude_deg/ecef_to_enu_rotation below.",
+  "source_tileset": "output\\3dtiles\\3dtiles\\tileset.json",
+  "source_asset_version": "1.1",
+  "tiles_merged": 126,
+  "tiles_failed": 0,
+  "total_vertices": 79960,
+  "total_faces": 126524,
+  "bounds_local_m": {
+    "min": [
+      -1309.2873395019678,
+      -1701.074463271046,
+      -288.6751173124315
+    ],
+    "max": [
+      1870.399459033497,
+      2736.5533739474554,
+      284.7088522616374
+    ]
+  },
+  "output_glb": "merged_city_enu.glb",
+  "runtime_seconds": 0.45,
+  "centroid_latitude_deg": 28.678550677642285,
+  "centroid_longitude_deg": 77.22167339389362,
+  "ecef_to_enu_rotation": [
+    [
+      -0.9752330901484139,
+      0.2211796099996012,
+      0.0
+    ],
+    [
+      -0.10614300978122079,
+      -0.4680095756872883,
+      0.8773258793285355
+    ],
+    [
+      0.19404659583244266,
+      0.8555972283647421,
+      0.47989509422415644
+    ]
+  ]
+}

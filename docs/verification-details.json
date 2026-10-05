@@ -1,0 +1,21 @@
+{
+  "original_files_verified_unchanged": 648,
+  "python_files_syntax_checked": 39,
+  "original_file_dispositions": {
+    "excluded_generated_cache": 32,
+    "copied": 295,
+    "duplicate": 318,
+    "redundant_archive": 3
+  },
+  "git_candidate_files_before_verification_record": 314,
+  "git_candidate_bytes": 84990118,
+  "largest_git_candidate_bytes": 8845650,
+  "modified_copied_paths": [
+    "pyproject.toml",
+    "src/pasa/analysis.py",
+    "src/pasa/cli.py",
+    "src/pasa/config.py",
+    "src/pasa/io/aod_loaders.py",
+    "src/pasa/plotting.py"
+  ]
+}

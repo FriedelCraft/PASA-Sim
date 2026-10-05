@@ -1,0 +1,17 @@
+# Exact versions this codebase was built and tested against.
+# embreex is optional (pyproject.toml's "fast-raytracing" extra) -- shadow.py
+# falls back to a pure-NumPy ray intersector automatically if it's absent,
+# just noticeably slower for large scenes/long runs.
+embreex==4.4.0
+matplotlib==3.10.8
+netCDF4==1.7.4
+numpy==2.4.4
+pandas==3.0.2
+plotly==6.9.0
+pvlib==0.15.2
+PyYAML==6.0.3
+rasterio==1.5.0
+scipy==1.17.1
+tqdm==4.69.0
+trimesh==4.12.2
+xarray==2026.7.0

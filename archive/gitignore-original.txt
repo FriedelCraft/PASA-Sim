@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.egg-info/
+outputs/
+checkpoints/
+analysis_output/
+*.npz.tmp.npz
+.pytest_cache/

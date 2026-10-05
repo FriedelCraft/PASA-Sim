@@ -1,0 +1,23 @@
+run:
+  simulation_mode: pollution
+  run_name: pollution
+  output_dir: ../outputs/synthetic
+  checkpoint_dir: ../checkpoints/synthetic_pollution
+  resume: false
+  force_restart: true
+city_model:
+  glb_path: ../data/synthetic/synthetic_city.glb
+time:
+  year: 2024
+  start: '2024-01-08 00:00'
+  end: '2024-01-12 23:00'
+pollution:
+  attenuation_model: aod_beer_lambert
+  aod:
+    path: ../data/synthetic/synthetic_aod_multi_pixel.csv
+    format: csv
+    spatially_varying: true
+performance:
+  n_workers: 1
+  hour_chunk_size: 24
+  use_embree_if_available: false

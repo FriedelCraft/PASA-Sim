@@ -1,0 +1,18 @@
+# Full-year city run. Enable hourly arrays if temporal analysis is needed.
+run:
+  simulation_mode: clear
+  run_name: civil_lines_2025_clear
+  output_dir: ../outputs/civil_lines
+  checkpoint_dir: ../checkpoints/civil_lines_clear
+  resume: false
+  force_restart: false
+city_model:
+  glb_path: ../data/civil_lines/city.glb
+time:
+  year: 2025
+performance:
+  n_workers: 1
+  hour_chunk_size: 100
+output:
+  save_hourly_irradiance: false
+  save_hourly_shadow_mask: false

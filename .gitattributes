@@ -1,0 +1,15 @@
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+*.json text eol=lf
+*.glb binary
+*.gpkg binary
+*.tif binary
+*.npz binary
+*.nc binary
+*.pdf binary
+*.docx binary
+*.pptx binary
+*.png binary

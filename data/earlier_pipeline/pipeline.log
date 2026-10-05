@@ -1,0 +1,77 @@
+2026-07-03 15:09:40 | INFO     | __main__:176 | ======================================================================
+2026-07-03 15:09:40 | INFO     | __main__:177 | city3d_pipeline starting
+2026-07-03 15:09:40 | INFO     | __main__:178 | Config: config.yaml
+2026-07-03 15:09:40 | INFO     | __main__:179 | AOI boundary: C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\Civil_Lines.shp
+2026-07-03 15:09:40 | INFO     | __main__:180 | Working CRS: EPSG:32643
+2026-07-03 15:09:40 | INFO     | __main__:181 | Output directory: C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output
+2026-07-03 15:09:40 | INFO     | __main__:182 | ======================================================================
+2026-07-03 15:09:40 | INFO     | utils:196 | -> starting: Load & validate AOI
+2026-07-03 15:09:40 | INFO     | utils:201 | <- finished: Load & validate AOI (0.04s)
+2026-07-03 15:09:40 | ERROR    | __main__:188 | Pipeline failed: Could not read AOI boundary 'C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\Civil_Lines.shp': Unable to open C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\Civil_Lines.shx or C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\Civil_Lines.SHX. Set SHAPE_RESTORE_SHX config option to YES to restore or create it.
+2026-07-03 15:11:21 | INFO     | __main__:176 | ======================================================================
+2026-07-03 15:11:21 | INFO     | __main__:177 | city3d_pipeline starting
+2026-07-03 15:11:21 | INFO     | __main__:178 | Config: config.yaml
+2026-07-03 15:11:21 | INFO     | __main__:179 | AOI boundary: C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\Civil_Lines.shp
+2026-07-03 15:11:21 | INFO     | __main__:180 | Working CRS: EPSG:32643
+2026-07-03 15:11:21 | INFO     | __main__:181 | Output directory: C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output
+2026-07-03 15:11:21 | INFO     | __main__:182 | ======================================================================
+2026-07-03 15:11:21 | INFO     | utils:196 | -> starting: Load & validate AOI
+2026-07-03 15:11:21 | INFO     | utils:69 | Reprojecting AOI boundary from EPSG:4326 to EPSG:32643
+2026-07-03 15:11:21 | INFO     | aoi:94 | AOI loaded from 'C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\Civil_Lines.shp': 1 polygon part(s) -> one Polygon covering 6.2438 km^2, bounds=(715793.3, 3172583.9, 719018.4, 3177247.1)
+2026-07-03 15:11:21 | INFO     | utils:201 | <- finished: Load & validate AOI (0.04s)
+2026-07-03 15:11:21 | INFO     | utils:196 | -> starting: Load footprints
+2026-07-03 15:11:24 | INFO     | utils:201 | <- finished: Load footprints (3.21s)
+2026-07-03 15:11:24 | ERROR    | __main__:188 | Pipeline failed: AOI does not intersect the building footprints layer. AOI bounds (working CRS): (715793.3, 3172583.9, 719018.4, 3177247.1); the building footprints layer bounds (working CRS): (np.float64(77.0), np.float64(28.5), np.float64(77.3), np.float64(28.7)). Double-check both inputs are actually in/near the same place and that any CRS without an explicit EPSG code was interpreted correctly.
+2026-07-03 15:13:48 | INFO     | __main__:176 | ======================================================================
+2026-07-03 15:13:48 | INFO     | __main__:177 | city3d_pipeline starting
+2026-07-03 15:13:48 | INFO     | __main__:178 | Config: config.yaml
+2026-07-03 15:13:48 | INFO     | __main__:179 | AOI boundary: C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\Civil_Lines.shp
+2026-07-03 15:13:48 | INFO     | __main__:180 | Working CRS: EPSG:32643
+2026-07-03 15:13:48 | INFO     | __main__:181 | Output directory: C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output
+2026-07-03 15:13:48 | INFO     | __main__:182 | ======================================================================
+2026-07-03 15:13:48 | INFO     | utils:196 | -> starting: Load & validate AOI
+2026-07-03 15:13:49 | INFO     | utils:69 | Reprojecting AOI boundary from EPSG:4326 to EPSG:32643
+2026-07-03 15:13:49 | INFO     | aoi:94 | AOI loaded from 'C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\Civil_Lines.shp': 1 polygon part(s) -> one Polygon covering 6.2438 km^2, bounds=(715793.3, 3172583.9, 719018.4, 3177247.1)
+2026-07-03 15:13:49 | INFO     | utils:201 | <- finished: Load & validate AOI (0.04s)
+2026-07-03 15:13:49 | INFO     | utils:196 | -> starting: Load footprints
+2026-07-03 15:13:51 | INFO     | utils:69 | Reprojecting footprints from EPSG:4326 to EPSG:32643
+2026-07-03 15:13:54 | INFO     | utils:201 | <- finished: Load footprints (5.72s)
+2026-07-03 15:13:54 | INFO     | utils:196 | -> starting: Repair & clean footprint geometry
+2026-07-03 15:14:05 | INFO     | geometry:51 | Geometry pipeline: loaded=1213000, repaired=0, dropped(invalid)=0, dropped(empty/tiny)=782, dropped(outside AOI)=0, remaining=1212233
+2026-07-03 15:14:05 | INFO     | utils:201 | <- finished: Repair & clean footprint geometry (10.91s)
+2026-07-03 15:14:05 | INFO     | utils:196 | -> starting: Clip footprints to AOI
+2026-07-03 15:14:06 | INFO     | geometry:153 | AOI clip: 1212233 -> 8351 buildings (1203882 outside AOI)
+2026-07-03 15:14:06 | INFO     | utils:201 | <- finished: Clip footprints to AOI (0.69s)
+2026-07-03 15:14:06 | INFO     | utils:196 | -> starting: Clip & mosaic DSM to AOI
+2026-07-03 15:14:06 | INFO     | raster_clip:151 | DSM clipped+mosaicked to AOI: 1334x1928px @ 2.419m/px, 1/4 source(s) contributed, 100.0% valid coverage
+2026-07-03 15:14:06 | INFO     | raster_clip:167 | Wrote raster: C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output\DSM_clipped.tif
+2026-07-03 15:14:06 | INFO     | utils:201 | <- finished: Clip & mosaic DSM to AOI (0.22s)
+2026-07-03 15:14:06 | INFO     | utils:196 | -> starting: Derive / clip ground elevation (DEM)
+2026-07-03 15:14:06 | INFO     | dem_estimation:79 | Deriving DEM via grey-opening: window=40.0m (17x17px at 2.419m/px)
+2026-07-03 15:14:06 | INFO     | raster_clip:167 | Wrote raster: C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output\DEM.tif
+2026-07-03 15:14:06 | INFO     | utils:201 | <- finished: Derive / clip ground elevation (DEM) (0.10s)
+2026-07-03 15:14:06 | INFO     | utils:196 | -> starting: Compute nDSM
+2026-07-03 15:14:06 | INFO     | raster_clip:167 | Wrote raster: C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output\nDSM.tif
+2026-07-03 15:14:06 | INFO     | utils:201 | <- finished: Compute nDSM (0.07s)
+2026-07-03 15:14:06 | INFO     | utils:196 | -> starting: Estimate building heights
+2026-07-03 15:14:18 | INFO     | height_estimation:156 | Filled 1130 fallback building(s) missing base_elev_m with AOI median (0.00m)
+2026-07-03 15:14:18 | INFO     | height_estimation:166 | Height estimation complete: 8351 buildings | 1130 fallback (no usable pixels) | 0 used the ring-buffer ground fallback | 7221 clamped | 0 errored
+2026-07-03 15:14:18 | INFO     | utils:201 | <- finished: Estimate building heights (11.98s)
+2026-07-03 15:14:18 | INFO     | utils:196 | -> starting: Extrude footprints to 3D solids
+2026-07-03 15:14:21 | INFO     | extrusion:100 | Extrusion complete: 8351 solids built, 0 failed, 0 skipped
+2026-07-03 15:14:21 | INFO     | utils:201 | <- finished: Extrude footprints to 3D solids (3.22s)
+2026-07-03 15:14:21 | INFO     | utils:196 | -> starting: Export outputs
+2026-07-03 15:14:21 | INFO     | tiling:77 | Quadtree built: 126 tiles, max depth 5, buildings/tile min=1 max=150 avg=66.3
+2026-07-03 15:14:22 | INFO     | export:202 | 3D Tiles written: 126 content tile(s) -> C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output\3dtiles\tileset.json
+2026-07-03 15:14:23 | INFO     | export:402 | CityJSON written: 8351 buildings -> C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output\city.cityjson
+2026-07-03 15:14:24 | INFO     | pyogrio._io:733 | Created 8,351 records
+2026-07-03 15:14:24 | INFO     | export:454 | GeoPackage written: 8351 buildings -> C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output\buildings_aoi.gpkg
+2026-07-03 15:14:24 | INFO     | export:429 | Statistics CSV written: 8351 buildings -> C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output\statistics.csv
+2026-07-03 15:14:24 | INFO     | utils:201 | <- finished: Export outputs (2.19s)
+2026-07-03 15:14:24 | INFO     | __main__:195 | ======================================================================
+2026-07-03 15:14:24 | INFO     | __main__:196 | DONE in 35.1s -- 8351 buildings exported
+2026-07-03 15:14:24 | INFO     | __main__:198 |   [3d_tiles] C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output\3dtiles\tileset.json
+2026-07-03 15:14:24 | INFO     | __main__:198 |   [cityjson] C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output\city.cityjson
+2026-07-03 15:14:24 | INFO     | __main__:198 |   [geopackage] C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output\buildings_aoi.gpkg
+2026-07-03 15:14:24 | INFO     | __main__:198 |   [statistics_csv] C:\Users\HP\Documents\Yash\Extrusion\CIVIL LINES BUILDING GENERATION\output\statistics.csv
+2026-07-03 15:14:24 | INFO     | __main__:199 | ======================================================================

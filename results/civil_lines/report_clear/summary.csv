@@ -1,0 +1,10 @@
+Metric,Value
+Total Annual Energy (GWh),2462.56103515625
+Average Rooftop Irradiance (kWh/m2/year),1691.9300537109375
+Maximum Rooftop Irradiance (kWh/m2/year),1758.050048828125
+Minimum Rooftop Irradiance (kWh/m2/year),0.0
+Average Building Energy (kWh),2462561536.0
+Maximum Building Energy (kWh),2462561536.0
+Number of Roof Faces,23226.0
+Number of Wall Faces,79934.0
+Total Simulated Faces,103160.0
